@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Drishti Baadhit Karimik Sangh — Website + Documents Portal
 
-## Getting Started
+Public website for DBKS Rajasthan, with a Google-login Documents Portal (admin upload / member view).
 
-First, run the development server:
+## Local development
+
+1. Use a PostgreSQL database and set `DATABASE_URL` in `.env` (see `.env.example`).
+2. Copy `.env.example` → `.env` and fill Google OAuth + `ADMIN_EMAILS` + `AUTH_SECRET`.
+3. Install and migrate:
 
 ```bash
+npm install
+npx prisma migrate deploy
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Documents Portal
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/documents` — Google sign-in
+- Admin emails (`ADMIN_EMAILS`) → `/admin` (upload/delete)
+- Other users → `/library` (view/download)
+- Max upload size: 10 MB (stored in the database for Heroku compatibility)
 
-## Learn More
+## GitHub + Heroku
 
-To learn more about Next.js, take a look at the following resources:
+### Private GitHub repo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+gh repo create dbks --private --source=. --remote=origin --push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Heroku
 
-## Deploy on Vercel
+```bash
+heroku create YOUR-APP-NAME
+heroku addons:create heroku-postgresql:essential-0
+heroku config:set AUTH_SECRET="..." AUTH_TRUST_HOST=true AUTH_URL=https://YOUR-APP-NAME.herokuapp.com
+heroku config:set GOOGLE_CLIENT_ID="..." GOOGLE_CLIENT_SECRET="..."
+heroku config:set ADMIN_EMAILS="185519@nith.ac.in"
+git push heroku master
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Add this Google OAuth redirect URI:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`https://YOUR-APP-NAME.herokuapp.com/api/auth/callback/google`
+
+## Stack
+
+- Next.js (App Router)
+- PostgreSQL + Prisma
+- Auth.js (Google)
+- Heroku (`Procfile` runs migrations then `next start`)
