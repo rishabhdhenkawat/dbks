@@ -6,7 +6,6 @@ const nav = [
   { href: "/events", label: "Events" },
   { href: "/founding-members", label: "Founding Members" },
   { href: "/press-release", label: "Press Release" },
-  { href: "/education", label: "Education Department" },
   { href: "/documents", label: "Documents Portal" },
 ];
 

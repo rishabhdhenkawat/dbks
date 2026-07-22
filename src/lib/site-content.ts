@@ -141,14 +141,3 @@ export const pressReleases = [
     body: "Official statements, media coverage, and announcements from Drishti Baadhit Karimik Sangh Rajasthan will appear on this page.",
   },
 ];
-
-export const educationContent = {
-  intro:
-    "The Education Department wing supports visually impaired employees and learners through awareness, workshops, and sharing of circulars and rules relevant to education services under the Government of Rajasthan.",
-  points: [
-    "Share education-department circulars and service rules with members.",
-    "Organize capacity-building workshops and skill sessions.",
-    "Support members facing workplace or administrative barriers in education roles.",
-    "Coordinate with the Documents Portal for authenticated access to shared files.",
-  ],
-};
