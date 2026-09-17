@@ -1,41 +1,29 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { site } from "@/lib/site-content";
 
 export function MembershipForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">(
-    "idle",
-  );
-  const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "ok">("idle");
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
-    setError(null);
     const form = e.currentTarget;
     const data = new FormData(form);
+    const firstName = String(data.get("firstName") || "").trim();
+    const lastName = String(data.get("lastName") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const message = String(data.get("message") || "").trim();
 
-    try {
-      const res = await fetch("/api/membership", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: data.get("firstName"),
-          lastName: data.get("lastName"),
-          email: data.get("email"),
-          message: data.get("message"),
-        }),
-      });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || "Could not submit");
-      }
-      form.reset();
-      setStatus("ok");
-    } catch (err) {
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Could not submit");
-    }
+    const subject = encodeURIComponent(
+      `Membership enquiry from ${firstName} ${lastName}`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${firstName} ${lastName}\nEmail: ${email}\n\n${message}`,
+    );
+    window.location.href = `mailto:${site.contactEmail}?subject=${subject}&body=${body}`;
+    form.reset();
+    setStatus("ok");
   }
 
   return (
@@ -82,19 +70,14 @@ export function MembershipForm() {
       </label>
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="rounded-lg bg-[var(--brand)] px-5 py-3 text-sm font-medium text-white transition hover:bg-[var(--brand-deep)] disabled:opacity-60"
+        className="rounded-lg bg-[var(--brand)] px-5 py-3 text-sm font-medium text-white transition hover:bg-[var(--brand-deep)]"
       >
-        {status === "sending" ? "Submitting…" : "Submit"}
+        Submit
       </button>
       {status === "ok" && (
         <p role="status" className="text-sm text-[var(--brand)]">
-          Thank you. Your membership enquiry has been received.
-        </p>
-      )}
-      {status === "error" && error && (
-        <p role="alert" className="text-sm text-[#8b2e2e]">
-          {error}
+          Your email app should open with the membership message. If it does
+          not, write to {site.contactEmail}.
         </p>
       )}
     </form>

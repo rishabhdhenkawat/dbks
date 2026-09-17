@@ -4,6 +4,9 @@ export const site = {
   region: "Rajasthan",
   tagline:
     "A non-profit organization for visually impaired employees working in departments under the Government of Rajasthan.",
+  contactEmail: "185519@nith.ac.in",
+  /** Dynamic login/upload app (Heroku). Static GitHub Pages cannot host auth/uploads. */
+  documentsPortalUrl: "https://dbks-rajasthan-c07d526a70ce.herokuapp.com/documents",
   social: {
     instagram: "https://www.instagram.com/",
     facebook: "https://www.facebook.com/",

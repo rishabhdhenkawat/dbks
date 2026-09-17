@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { site } from "@/lib/site-content";
 
 export const metadata = {
@@ -25,7 +24,12 @@ export default function DocumentsPortalPage() {
           Admins can upload files; members can view and download them.
         </p>
         <div className="mt-10">
-          <GoogleSignInButton />
+          <a
+            href={site.documentsPortalUrl}
+            className="inline-flex w-full items-center justify-center rounded-lg bg-[#1a3a2f] px-6 py-3.5 text-sm font-medium text-[#f4f7f5] transition hover:bg-[#244a3d]"
+          >
+            Open Documents Portal
+          </a>
         </div>
         <p className="mt-6 text-sm text-[var(--muted)]">
           <Link href="/" className="underline-offset-4 hover:underline">
