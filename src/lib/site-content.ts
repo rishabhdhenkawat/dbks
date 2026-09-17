@@ -29,26 +29,37 @@ export const objectives = [
 ];
 
 export const currentCommittee = [
-  { name: "Late. Bhawar Lal Prajapat", role: "President" },
-  { name: "Mr Chetan Sharma", role: "Vice President" },
-  { name: "Mr Chandra Bhushan Sharma", role: "Vice President" },
-  { name: "Mr Raman Sharma", role: "General Secretary" },
-  { name: "Mr Asharam Meena", role: "Joint Secretary" },
-  { name: "Miss Shalini Mangal", role: "Women Cell" },
+  { name: "Mr. Vikram Rathore", role: "President" },
+  { name: "Mr. Buddhi Prakash Pawar", role: "Vice President" },
+  { name: "Mr. Khemchand Meena", role: "Vice President" },
+  { name: "Mr. Tikamchand Jain", role: "General Secretary" },
+  { name: "Mr. Ramniwas Gurjar", role: "Joint Secretary" },
+  { name: "Mr. Hitesh", role: "Joint Secretary" },
+  { name: "Mr. Krishna Murari", role: "Treasurer" },
+  { name: "Miss. Shalini Mangal", role: "Women Cell In-charge" },
 ];
 
-export const otherMembers = [
-  "Mr. Ramniwas Gurjar",
-  "Mr. Mohal Lal Verma",
-  "Mr Madan Lal Prajapat",
+export const committeeNote =
+  "Drishtibadhit Karmik Sangh successfully completed its 4-year tenure and conducted elections on June 7 and 8, 2025, to form its new executive committee.";
+
+export const executiveMembers = [
+  { name: "Mr. Bodhu Ram Saini", role: "Executive Committee Member" },
+  { name: "Mr. Mahendra Joshi", role: "Executive Committee Member" },
+  { name: "Mr. Mukesh Kumar", role: "Executive Committee Member" },
 ];
 
-export const advisors = [
-  { name: "Mr Surya Prakash Sharma", role: "Advisor" },
-  { name: "Mr Akashdeep Arora", role: "Advisor" },
+export const patronMembers = [
+  { name: "Mr. Surya Prakash Sharma", role: "Patron Committee Member" },
+  { name: "Mr. Akashdeep Arora", role: "Patron Committee Member" },
+  { name: "Mr. Raman Kumar Sharma", role: "Patron Committee Member" },
 ];
 
 export const events = [
+  {
+    date: "June 7-8, 2025",
+    title:
+      "Elections conducted after completion of the 4-year tenure, forming the new executive committee of Drishtibadhit Karmik Sangh.",
+  },
   {
     date: "June 2-3, 2018",
     title:
@@ -139,8 +150,8 @@ export const foundingAdvisors = [
 
 export const pressReleases = [
   {
-    date: "Coming soon",
-    title: "Press releases will be published here.",
-    body: "Official statements, media coverage, and announcements from Drishti Baadhit Karimik Sangh Rajasthan will appear on this page.",
+    date: "June 8, 2025",
+    title: "New executive committee elected",
+    body: "Drishtibadhit Karmik Sangh successfully completed its 4-year tenure and conducted elections on June 7 and 8, 2025, to form its new executive committee.",
   },
 ];

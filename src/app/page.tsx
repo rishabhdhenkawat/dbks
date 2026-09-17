@@ -2,10 +2,11 @@ import Link from "next/link";
 import { MembershipForm } from "@/components/MembershipForm";
 import {
   about,
-  advisors,
+  committeeNote,
   currentCommittee,
+  executiveMembers,
   objectives,
-  otherMembers,
+  patronMembers,
   site,
 } from "@/lib/site-content";
 
@@ -93,9 +94,15 @@ export default function HomePage() {
         >
           Current Committee Members
         </h2>
+        <p className="mt-4 max-w-3xl text-base leading-relaxed text-[var(--body)] sm:text-lg">
+          {committeeNote}
+        </p>
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {currentCommittee.map((m) => (
-            <li key={m.name} className="border-t border-[var(--brand)]/30 pt-4">
+            <li
+              key={`${m.role}-${m.name}`}
+              className="border-t border-[var(--brand)]/30 pt-4"
+            >
               <p className="font-medium text-[var(--ink)]">{m.name}</p>
               <p className="mt-1 text-sm text-[var(--muted)]">{m.role}</p>
             </li>
@@ -103,19 +110,22 @@ export default function HomePage() {
         </ul>
 
         <h3 className="mt-14 text-xl font-medium text-[var(--ink)]">
-          Other Members
+          Executive Committee Members
         </h3>
-        <ul className="mt-4 space-y-2 text-[var(--body)]">
-          {otherMembers.map((name) => (
-            <li key={name}>{name}</li>
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {executiveMembers.map((m) => (
+            <li key={m.name}>
+              <p className="font-medium text-[var(--ink)]">{m.name}</p>
+              <p className="text-sm text-[var(--muted)]">{m.role}</p>
+            </li>
           ))}
         </ul>
 
         <h3 className="mt-14 text-xl font-medium text-[var(--ink)]">
-          Advisor Committee
+          Patron Committee
         </h3>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-          {advisors.map((m) => (
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {patronMembers.map((m) => (
             <li key={m.name}>
               <p className="font-medium text-[var(--ink)]">{m.name}</p>
               <p className="text-sm text-[var(--muted)]">{m.role}</p>
