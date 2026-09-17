@@ -4,7 +4,8 @@ Static site hosted on **GitHub Pages**.
 
 ## Live URL
 
-https://rishabhdhenkawat.github.io/dbks/
+- https://rishabhdhenkawat.github.io/dbks/
+- http://i-am-rishabh.me/dbks/ (if your GitHub Pages custom domain is active)
 
 ## Local development
 
